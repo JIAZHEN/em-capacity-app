@@ -3,22 +3,15 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+## The model
 
-* Ruby version
+```
+./bin/rails g model Absence employee:references calendar_date:date half_day:boolean absence_type:string
+```
 
-* System dependencies
+## DB migration
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+./bin/rake db:create
+./bin/rake db:migrate
+```

@@ -1,0 +1,2 @@
+class BankHoliday < ApplicationRecord
+end
