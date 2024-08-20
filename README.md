@@ -15,3 +15,9 @@ application up and running.
 ./bin/rake db:create
 ./bin/rake db:migrate
 ```
+
+## Administrator
+
+```
+./bin/rails generate administrate:install
+```
