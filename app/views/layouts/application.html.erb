@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
   <head>
     <title>EmCapacityApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,9 +11,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-neutral-100 dark:bg-neutral-900">
+    <header class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 p-4 flex items-center justify-around">
+      <h1 class="text-slate-900 dark:text-white font-bold text-4xl">DarkMode</h1>
+
+      <nav class="space-x-1">
+        <a href="#">Home</a>
+        <a href="#">Contact</a>
+        <a href="#">Details</a>
+      </nav>
+    </header>
+    <main class="container mx-auto py-8 max-w-4xl">
       <%= yield %>
     </main>
+    <%= render "layouts/footer" %>
   </body>
 </html>

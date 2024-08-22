@@ -21,3 +21,9 @@ application up and running.
 ```
 ./bin/rails generate administrate:install
 ```
+
+## Generate the tailwindcss
+
+```
+./bin/rake assets:precompile
+```
