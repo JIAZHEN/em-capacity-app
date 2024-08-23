@@ -15,4 +15,9 @@ class Employee < ApplicationRecord
       absence.half_day ? result + 0.5 : result + 1
     end
   end
+
+  def engineering_factor_in_month(month_number)
+    the_year = Date.current.year
+    self.employee_factors.where(year: the_year, month: month_number).first&.engineering_factor
+  end
 end

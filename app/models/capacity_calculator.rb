@@ -1,4 +1,4 @@
-class BusinessDay
+class CapacityCalculator
   attr_reader :months, :bank_holidays, :business_days
 
   def initialize(bank_holidays)
@@ -25,6 +25,16 @@ class BusinessDay
 
   def get_employee_business_days(employee, month_name)
     business_days_in_month(month_name) - employee.absence_days_in_month(month_name)
+  end
+
+  def get_employee_engineering_days(employee, month_name)
+    pure_business_days = get_employee_business_days(employee, month_name)
+    engineering_factor = employee.engineering_factor_in_month(month_name)
+    unless engineering_factor
+      raise "No engineering factor found for #{employee.name} in #{month_name}"
+    end
+
+    pure_business_days * engineering_factor
   end
 
   private
