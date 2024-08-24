@@ -54,14 +54,11 @@
     <thead class="ltr:text-left rtl:text-right">
       <tr>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Name</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
-          Date of Birth
-        </th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">Role</th>
-        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
-          Salary
-        </th>
-        <th class="px-4 py-2"></th>
+        <% @month_names.each do |month_name| %>
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+            <%= month_name.to_s.titleize %>
+          </th>
+        <%  end %>
       </tr>
     </thead>
 

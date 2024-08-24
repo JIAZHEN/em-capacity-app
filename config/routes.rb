@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :bank_holidays
     resources :employees
     resources :employee_factors
+
+    root to: "employees#index"
   end
 
   get 'capacities/show'

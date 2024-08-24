@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_20_212710) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_24_134022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_20_212710) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employee_allowances", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.integer "year"
+    t.integer "holiday_allowance"
+    t.integer "sick_leave_allowance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_employee_allowances_on_employee_id"
+  end
+
   create_table "employee_factors", force: :cascade do |t|
     t.bigint "employee_id", null: false
     t.float "factor"
@@ -48,5 +58,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_20_212710) do
   end
 
   add_foreign_key "absences", "employees"
+  add_foreign_key "employee_allowances", "employees"
   add_foreign_key "employee_factors", "employees"
 end

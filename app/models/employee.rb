@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
   has_many :employee_factors
   has_many :absences
+  has_many :employee_allowances
 
   def absences_between(start_date, end_date)
     self.absences.where(calendar_date: start_date..end_date)
@@ -18,8 +19,8 @@ class Employee < ApplicationRecord
     self.employee_factors.where(year: the_year, month: month_number).first&.engineering_factor
   end
 
-  def remaining_holiday_allowance
-    
+  def allowances_in_year(year = Date.current.year)
+    self.employee_allowances.find_by(year: year)
   end
 
   private

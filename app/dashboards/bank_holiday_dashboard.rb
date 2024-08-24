@@ -42,7 +42,6 @@ class BankHolidayDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     calendar_date
-    year
   ].freeze
 
   # COLLECTION_FILTERS
