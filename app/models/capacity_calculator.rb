@@ -27,12 +27,14 @@ class CapacityCalculator
   end
 
   def get_employee_business_days(employee, month_name)
-    business_days_in_month(month_name) - employee.absence_days_in_month(month_name)
+    month_number = self.get_month_number_from(month_name)
+    business_days_in_month(month_name) - employee.absence_days_in_month(month_number)
   end
 
   def get_employee_engineering_days(employee, month_name)
     pure_business_days = get_employee_business_days(employee, month_name)
-    engineering_factor = employee.engineering_factor_in_month(month_name)
+    month_number = self.get_month_number_from(month_name)
+    engineering_factor = employee.engineering_factor_in_month(month_number)
     unless engineering_factor
       raise "No engineering factor found for #{employee.name} in #{month_name}"
     end
@@ -41,6 +43,10 @@ class CapacityCalculator
   end
 
   private
+
+  def get_month_number_from(month_name)
+    MONTH_NAMES.find_index(month_name) + 1
+  end
 
   def business_day?(date)
     working_day?(date) && !self.bank_holidays.include?(date)

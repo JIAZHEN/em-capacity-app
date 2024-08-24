@@ -68,6 +68,6 @@ class EmployeeFactorDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   # def display_resource(employee_factor)
-  #   "EmployeeFactor ##{employee_factor.id}"
+  #   "EmployeeFactor: #{employee_factor.year}-#{employee_factor.month}"
   # end
 end

@@ -16,7 +16,7 @@ class Employee < ApplicationRecord
 
   def engineering_factor_in_month(month_number)
     the_year = Date.current.year
-    self.employee_factors.where(year: the_year, month: month_number).first&.engineering_factor
+    self.employee_factors.where(year: the_year, month: month_number).first&.factor
   end
 
   def allowances_in_year(year = Date.current.year)
