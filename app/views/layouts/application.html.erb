@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="dark">
   <head>
-    <title>EmCapacityApp</title>
+    <title>Engineering Manager Capacity Planning</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,15 +12,43 @@
   </head>
 
   <body class="bg-neutral-100 dark:bg-neutral-900">
-    <header class="bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 p-4 flex items-center justify-around">
-      <h1 class="text-slate-900 dark:text-white font-bold text-4xl">DarkMode</h1>
+      <header class="border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
+        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+          <div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl dark:text-white">Capacity Planning</h1>
 
-      <nav class="space-x-1">
-        <a href="#">Home</a>
-        <a href="#">Contact</a>
-        <a href="#">Details</a>
-      </nav>
-    </header>
+              <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
+                To plan for the future, you need to know the business days in your team.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <button
+                class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:outline-none focus:ring dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:hover:text-gray-200"
+                onclick="window.open('<%= admin_employees_path %>')"
+                type="button"
+              >
+                <span class="text-sm font-medium"> View Admin </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
     <main class="container mx-auto py-8">
       <%= yield %>
     </main>
