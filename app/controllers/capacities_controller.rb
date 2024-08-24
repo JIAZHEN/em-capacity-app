@@ -10,14 +10,16 @@ class CapacitiesController < ApplicationController
     @employees_engineering_days = []
     @employees.map do |employee|
       employee_engineering_days = [employee.name]
-      employee_total = 0
       @month_names.map do |month_name|
         engineering_days = capacity_calculator.get_employee_engineering_days(employee, month_name)
-        employee_total += engineering_days
+        # get the sum of the employee row
+        month_index = capacity_calculator.get_month_number_from(month_name)
         employee_engineering_days << engineering_days
       end
-      employee_engineering_days << employee_total
       @employees_engineering_days << employee_engineering_days
     end
+
+    monthly_stats = capacity_calculator.get_monthly_stats(@employees_engineering_days)
+    @employees_engineering_days.concat(monthly_stats)
   end
 end

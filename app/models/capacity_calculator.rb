@@ -42,11 +42,24 @@ class CapacityCalculator
     pure_business_days * engineering_factor
   end
 
-  private
-
   def get_month_number_from(month_name)
     MONTH_NAMES.find_index(month_name) + 1
   end
+
+  # employees_engineering_days is an array of monthly employee's engineering days
+  # it's an array of size 13
+  # the first element is the employee's name
+  # the rest of the elements are the engineering days for each month
+  # Like: ["John Doe", 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
+  def get_monthly_stats(employees_engineering_days)
+    names, *months = employees_engineering_days.transpose
+    monthly_totals = months.map(&:sum)
+    running_sum = 0
+    running_total = monthly_totals.map { |monthly_total| running_sum += monthly_total }
+    [["Monthly Total", *monthly_totals], ["Running Total", *running_total]]
+  end
+
+  private
 
   def business_day?(date)
     working_day?(date) && !self.bank_holidays.include?(date)

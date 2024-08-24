@@ -42,5 +42,8 @@ module Admin
 
     # See https://administrate-demo.herokuapp.com/customizing_controller_actions
     # for more information
+    def default_sorting_attribute
+      :calendar_date
+    end
   end
 end
