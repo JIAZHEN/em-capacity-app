@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class EmployeeFactorDashboard < Administrate::BaseDashboard
+class EmployeeAllowanceDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -10,8 +10,8 @@ class EmployeeFactorDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     employee: Field::BelongsTo,
-    factor: Field::Number.with_options(decimals: 2),
-    month: Field::Number,
+    holiday_allowance: Field::Number,
+    sick_leave_allowance: Field::Number,
     year: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -25,9 +25,8 @@ class EmployeeFactorDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     employee
-    factor
-    year
-    month
+    holiday_allowance
+    sick_leave_allowance
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -35,9 +34,9 @@ class EmployeeFactorDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     employee
+    holiday_allowance
+    sick_leave_allowance
     year
-    month
-    factor
     created_at
     updated_at
   ].freeze
@@ -47,9 +46,9 @@ class EmployeeFactorDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     employee
+    holiday_allowance
+    sick_leave_allowance
     year
-    month
-    factor
   ].freeze
 
   # COLLECTION_FILTERS
@@ -64,10 +63,10 @@ class EmployeeFactorDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how employee factors are displayed
+  # Overwrite this method to customize how employee allowances are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(employee_factor)
-  #   "EmployeeFactor ##{employee_factor.id}"
+  # def display_resource(employee_allowance)
+  #   "EmployeeAllowance ##{employee_allowance.id}"
   # end
 end
