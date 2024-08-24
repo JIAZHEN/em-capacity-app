@@ -1,3 +1,5 @@
+require_relative '../../lib/constants'
+
 class CapacityCalculator
   attr_reader :months, :bank_holidays, :business_days
 
@@ -13,7 +15,8 @@ class CapacityCalculator
       end_date = start_date.end_of_month
 
       dates = (start_date..end_date).filter {|d| self.business_day?(d) }
-      result[start_date.strftime("%B")] = dates.size
+      month_name = MONTH_NAMES[month - 1]
+      result[month_name] = dates.size
       result
     end
   end
