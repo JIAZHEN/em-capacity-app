@@ -9,7 +9,7 @@ class AbsenceDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    absence_type: Field::Enum,
+    absence_type: Field::Select.with_options(collection: ["holiday", "sick_leave"]),
     calendar_date: Field::Date,
     employee: Field::BelongsTo,
     half_day: Field::Boolean,

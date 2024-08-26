@@ -3,40 +3,42 @@
     <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
       Engineering Team Capacity Dashboard
     </h2>
+    <p class="mt-1 text-lg text-gray-500 dark:text-gray-400">
+      The current month is <%= Date.current.strftime("%B, %Y") %>
+    </p>
   </div>
 
   <dl class="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
     <div
       class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
     >
-      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Total Capacity of Year</dt>
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Engineering Days</dt>
 
-      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @monthly_stats["Monthly Total"].sum %></dd>
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @remaining_engineering_days %></dd>
     </div>
 
     <div
       class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
     >
-      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">
-        H1 Capacity
-      </dt>
-      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @monthly_stats["H1 Total"] %></dd>
-    </div>
-
-    <div
-      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
-    >
-      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">H2 Capacity</dt>
-
-      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @monthly_stats["H2 Total"] %></dd>
-    </div>
-
-    <div
-      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
-    >
-      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Holiday remaining</dt>
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Holidays</dt>
 
       <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @holiday_remainings %></dd>
+    </div>
+
+    <div
+      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
+    >
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Capacity</dt>
+
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @remaining_engineering_days - @holiday_remainings %></dd>
+    </div>
+
+    <div
+      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
+    >
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Committments</dt>
+
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= 0 %></dd>
     </div>
   </dl>
 </div>

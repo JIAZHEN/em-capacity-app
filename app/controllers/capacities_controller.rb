@@ -3,6 +3,7 @@ require_relative '../../lib/constants'
 class CapacitiesController < ApplicationController
   def show
     the_year = Date.current.year
+    @current_month = Date.current.month
     @month_names = MONTH_NAMES
     @bank_holidays = BankHoliday.where(year: the_year)
     @employees = Employee.includes(:employee_factors, :employee_allowances, :absences).all
@@ -23,6 +24,7 @@ class CapacitiesController < ApplicationController
     end
 
     @monthly_stats = capacity_calculator.get_monthly_stats(@employees_engineering_days)
+    @remaining_engineering_days = @monthly_stats["Monthly Total"].slice(@current_month..-1).sum
     @employees_engineering_days << ["Monthly Total", *@monthly_stats["Monthly Total"]]
     @employees_engineering_days << ["Running Total", *@monthly_stats["Running Total"]]
   end

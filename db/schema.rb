@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_24_134022) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_26_205626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,9 +18,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_24_134022) do
     t.bigint "employee_id", null: false
     t.date "calendar_date"
     t.boolean "half_day"
-    t.string "absence_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "absence_type", default: 0
     t.index ["employee_id"], name: "index_absences_on_employee_id"
   end
 
