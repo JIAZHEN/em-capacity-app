@@ -19,7 +19,8 @@ class CapacitiesController < ApplicationController
       @employees_engineering_days << employee_engineering_days
     end
 
-    monthly_stats = capacity_calculator.get_monthly_stats(@employees_engineering_days)
-    @employees_engineering_days.concat(monthly_stats)
+    @monthly_stats = capacity_calculator.get_monthly_stats(@employees_engineering_days)
+    @employees_engineering_days << ["Monthly Total", *@monthly_stats["Monthly Total"]]
+    @employees_engineering_days << ["Running Total", *@monthly_stats["Running Total"]]
   end
 end

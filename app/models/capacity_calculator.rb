@@ -56,7 +56,12 @@ class CapacityCalculator
     monthly_totals = months.map(&:sum)
     running_sum = 0
     running_total = monthly_totals.map { |monthly_total| running_sum += monthly_total }
-    [["Monthly Total", *monthly_totals], ["Running Total", *running_total]]
+    { 
+      "Monthly Total" => monthly_totals, 
+      "Running Total" => running_total,
+      "H1 Total" => monthly_totals.slice(0, 6).sum,
+      "H2 Total" => monthly_totals.slice(6, 6).sum
+    }
   end
 
   private
