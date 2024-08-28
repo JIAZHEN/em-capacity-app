@@ -1,0 +1,36 @@
+<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+  <div class="mx-auto max-w-3xl text-center">
+    <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
+      Engineering Team Capacity Dashboard
+    </h2>
+    <p class="mt-1 text-lg text-gray-500 dark:text-gray-400">
+      The current month is <%= Date.current.strftime("%B, %Y") %>
+    </p>
+  </div>
+  <dl class="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div
+      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
+    >
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Engineering Days</dt>
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @remaining_engineering_days %></dd>
+    </div>
+    <div
+      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
+    >
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Holidays</dt>
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @holiday_remainings %></dd>
+    </div>
+    <div
+      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
+    >
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Capacity</dt>
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= @remaining_engineering_days - @holiday_remainings %></dd>
+    </div>
+    <div
+      class="flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center dark:border-gray-800"
+    >
+      <dt class="order-last text-lg font-medium text-gray-500 dark:text-gray-400">Remaining Committments</dt>
+      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><%= 0 %></dd>
+    </div>
+  </dl>
+</div>

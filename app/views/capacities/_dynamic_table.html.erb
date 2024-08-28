@@ -1,0 +1,47 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+    <%= form_with(url: capacities_show_path, method: :get) do |form| %>
+      <div class="flex space-x-3 items-center">
+        <%= form.label :start_date, "From", class: "block text-sm text-gray-700 dark:text-gray-200 align-baseline" %>
+        <%= form.date_field :start_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        <%= form.label :end_date, "To", class: "block text-sm text-gray-700 dark:text-gray-200 align-baseline" %>
+        <%= form.date_field :end_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        <%= form.submit 'Calculate', class: "px-4 py-3 text-sm font-medium bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
+      </div>
+    <% end %>
+  </div>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Product name
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Color
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Category
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <td scope="row" class="px-6 py-4">
+          Apple MacBook Pro 17"
+        </td>
+        <td class="px-6 py-4">
+          Silver
+        </td>
+        <td class="px-6 py-4">
+          Laptop
+        </td>
+        <td class="px-6 py-4">
+          $2999
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
