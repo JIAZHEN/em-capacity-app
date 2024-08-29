@@ -11,22 +11,9 @@ class Employee < ApplicationRecord
     self.absences.where(calendar_date: start_date..end_date, absence_type: Absence.absence_types[:holiday])
   end
 
-  def absence_days_in_month(month_number)
-    the_year = Date.current.year
-    start_date = Date.new(the_year, month_number, 1)
-    end_date = start_date.end_of_month
-    absences = self.absences_between(start_date, end_date)
-    self._calculate_absence_days(absences)
-  end
-
   def absence_days_between(start_date, end_date)
     absences = self.absences_between(start_date, end_date)
     self._calculate_absence_days(absences)
-  end
-
-  def engineering_factor_in_month(month_number)
-    the_year = Date.current.year
-    self.employee_factors.where(year: the_year, month: month_number).first&.factor
   end
 
   def engineering_factors_between(start_date, end_date)
@@ -53,6 +40,7 @@ class Employee < ApplicationRecord
     end
     allowance.holiday_allowance - num_days
   end
+
   private
 
   def _calculate_absence_days(absences)
