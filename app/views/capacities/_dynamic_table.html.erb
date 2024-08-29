@@ -3,45 +3,43 @@
     <%= form_with(url: capacities_show_path, method: :get) do |form| %>
       <div class="flex space-x-3 items-center">
         <%= form.label :start_date, "From", class: "block text-sm text-gray-700 dark:text-gray-200 align-baseline" %>
-        <%= form.date_field :start_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        <%= form.date_field :start_date, value: params[:start_date] || Date.current, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
         <%= form.label :end_date, "To", class: "block text-sm text-gray-700 dark:text-gray-200 align-baseline" %>
-        <%= form.date_field :end_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        <%= form.date_field :end_date, value: params[:end_date] || Date.current.end_of_year, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
         <%= form.submit 'Calculate', class: "px-4 py-3 text-sm font-medium bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
       </div>
     <% end %>
   </div>
   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead class="ltr:text-left rtl:text-right">
       <tr>
-        <th scope="col" class="px-6 py-3">
-          Product name
+        <th scope="col" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-blue-500 text-center">
+          Name
         </th>
-        <th scope="col" class="px-6 py-3">
-          Color
+        <th scope="col" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 text-center">
+          Engineering Days
         </th>
-        <th scope="col" class="px-6 py-3">
-          Category
-        </th>
-        <th scope="col" class="px-6 py-3">
-          Price
+        <th scope="col" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 text-center">
+          Engineering Weeks
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-        <td scope="row" class="px-6 py-4">
-          Apple MacBook Pro 17"
-        </td>
-        <td class="px-6 py-4">
-          Silver
-        </td>
-        <td class="px-6 py-4">
-          Laptop
-        </td>
-        <td class="px-6 py-4">
-          $2999
-        </td>
-      </tr>
+      <% @dynamic_employees_engineering_days.each do |employee_engineering_days| %>
+        <tr class="dark:hover:bg-gray-600">
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white text-center">
+            <%= employee_engineering_days[0].to_s.titleize %>
+          </td>
+          <% employee_engineering_days.slice(1, employee_engineering_days.length).each do |days| %>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center">
+              <%= days %>
+            </td>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center">
+              <%= days / 5 %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
