@@ -19,9 +19,25 @@ class Employee < ApplicationRecord
     self._calculate_absence_days(absences)
   end
 
+  def absence_days_between(start_date, end_date)
+    absences = self.absences_between(start_date, end_date)
+    self._calculate_absence_days(absences)
+  end
+
   def engineering_factor_in_month(month_number)
     the_year = Date.current.year
     self.employee_factors.where(year: the_year, month: month_number).first&.factor
+  end
+
+  def engineering_factors_between(start_date, end_date)
+    factors = self.employee_factors
+                  .where("TO_DATE('' || year || month, 'YYYYMM') >= ?", start_date.beginning_of_month)
+                  .where("TO_DATE('' || year || month, 'YYYYMM') <= ?", end_date.end_of_month)
+    
+    factors.reduce({}) do |result, factor|
+      result["#{factor.year}-#{factor.month}"] = factor.factor
+      result
+    end
   end
 
   def allowance_in_year(year = Date.current.year)

@@ -13,8 +13,7 @@ class CapacityCalculator
     @business_days ||= (1..12).reduce({}) do |result, month|
       start_date = Date.new(the_year, month, 1)
       end_date = start_date.end_of_month
-
-      dates = (start_date..end_date).filter {|d| self.business_day?(d) }
+      dates = self.business_days_between(start_date, end_date)
       month_name = MONTH_NAMES[month - 1]
       result[month_name] = dates.size
       result
@@ -40,6 +39,23 @@ class CapacityCalculator
     end
 
     pure_business_days * engineering_factor
+  end
+
+  def get_employee_engineering_days_between(employee, start_date, end_date)
+    employee_factors = employee.engineering_factors_between(start_date, end_date)
+    absences = employee.absences_between(start_date, end_date)
+
+    (start_date..end_date).reduce(0) do |result, d|
+      return result unless business_day?(d)
+      factor = employee_factors["#{d.year}-#{d.month}"]
+      unless factor
+        raise "No engineering factor found for #{employee.name} in #{d.year}-#{d.month}}"
+      end
+
+      found_absence = absences.find { |absence| absence.calendar_date == d }
+      day = found_absence ? (found_absence.half_day ? 0.5 : 0) : 1
+      result + factor * day
+    end
   end
 
   def get_month_number_from(month_name)
@@ -72,5 +88,9 @@ class CapacityCalculator
 
   def working_day?(date)
     !date.saturday? && !date.sunday?
+  end
+
+  def business_days_between(start_date, end_date)
+    (start_date..end_date).filter {|d| business_day?(d) }
   end
 end
