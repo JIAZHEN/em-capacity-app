@@ -28,7 +28,6 @@ class CapacitiesController < ApplicationController
     end
 
     @monthly_stats = capacity_calculator.get_stats(@employees_engineering_days)
-    @remaining_engineering_days = @monthly_stats[:column_totals].slice(@current_month..-1).sum
     @employees_engineering_days << ["Monthly Total", *@monthly_stats[:column_totals]]
     @employees_engineering_days << ["Running Total", *@monthly_stats[:running_total]]
 
@@ -43,6 +42,7 @@ class CapacitiesController < ApplicationController
       @dynamic_employees_engineering_days << employee_engineering_days
     end
     @dynamic_stats = capacity_calculator.get_stats(@dynamic_employees_engineering_days)
+    @remaining_engineering_days = @dynamic_stats[:column_totals].sum
     @dynamic_employees_engineering_days << ["Total", *@dynamic_stats[:column_totals]]
   end
 
