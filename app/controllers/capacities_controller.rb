@@ -38,11 +38,14 @@ class CapacitiesController < ApplicationController
     @employees.map do |employee|
       employee_engineering_days = [employee.name]
       engineering_days = capacity_calculator.get_employee_engineering_days_between(employee, @dynamic_start_date, @dynamic_end_date)
+      holiday_remaining = employee.holiday_remaining_in_year(the_year)
       employee_engineering_days << engineering_days
+      employee_engineering_days << holiday_remaining
+      employee_engineering_days << (engineering_days - holiday_remaining)
       @dynamic_employees_engineering_days << employee_engineering_days
     end
     @dynamic_stats = capacity_calculator.get_stats(@dynamic_employees_engineering_days)
-    @remaining_engineering_days = @dynamic_stats[:column_totals].sum
+    @remaining_engineering_days = @dynamic_stats[:column_totals][0]
     @dynamic_employees_engineering_days << ["Total", *@dynamic_stats[:column_totals]]
   end
 
