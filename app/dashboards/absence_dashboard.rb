@@ -27,6 +27,7 @@ class AbsenceDashboard < Administrate::BaseDashboard
     absence_type
     calendar_date
     employee
+    half_day
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
