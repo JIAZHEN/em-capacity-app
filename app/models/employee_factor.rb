@@ -4,7 +4,7 @@ class EmployeeFactor < ApplicationRecord
   class << self
     def create_yearly_factors(employee, year, factors)
       if factors.size != 12
-        raise "Factors must be provided for all 12 months"
+        raise ArgumentError, "Factors must be provided for all 12 months"
       end
 
       (1..12).zip(factors).each do |pair|
