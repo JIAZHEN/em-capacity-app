@@ -30,17 +30,12 @@ class CapacityCalculator
   # the first element is the employee's name
   # the rest of the elements are the engineering days for each month
   # Like: ["John Doe", 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
-  def get_monthly_stats(employees_engineering_days)
-    names, *months = employees_engineering_days.transpose
-    monthly_totals = months.map(&:sum)
+  def get_stats(employees_engineering_days)
+    names, *columns = employees_engineering_days.transpose
+    column_totals = columns.map(&:sum)
     running_sum = 0
-    running_total = monthly_totals.map { |monthly_total| running_sum += monthly_total }
-    { 
-      "Monthly Total" => monthly_totals, 
-      "Running Total" => running_total,
-      "H1 Total" => monthly_totals.slice(0, 6).sum,
-      "H2 Total" => monthly_totals.slice(6, 6).sum
-    }
+    running_total = column_totals.map { |column_total| running_sum += column_total }
+    { column_totals: column_totals,  running_total: running_total }
   end
 
   private

@@ -19,9 +19,6 @@
         <th scope="col" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 text-center">
           Engineering Days
         </th>
-        <th scope="col" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 text-center">
-          Engineering Weeks
-        </th>
       </tr>
     </thead>
     <tbody>
@@ -33,9 +30,6 @@
           <% employee_engineering_days.slice(1, employee_engineering_days.length).each do |days| %>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center">
               <%= days %>
-            </td>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center">
-              <%= days / 5 %>
             </td>
           <% end %>
         </tr>

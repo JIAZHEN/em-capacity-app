@@ -27,23 +27,23 @@ class CapacitiesController < ApplicationController
       @employees_engineering_days << employee_engineering_days
     end
 
-    @monthly_stats = capacity_calculator.get_monthly_stats(@employees_engineering_days)
-    @remaining_engineering_days = @monthly_stats["Monthly Total"].slice(@current_month..-1).sum
-    @employees_engineering_days << ["Monthly Total", *@monthly_stats["Monthly Total"]]
-    @employees_engineering_days << ["Running Total", *@monthly_stats["Running Total"]]
+    @monthly_stats = capacity_calculator.get_stats(@employees_engineering_days)
+    @remaining_engineering_days = @monthly_stats[:column_totals].slice(@current_month..-1).sum
+    @employees_engineering_days << ["Monthly Total", *@monthly_stats[:column_totals]]
+    @employees_engineering_days << ["Running Total", *@monthly_stats[:running_total]]
 
     # dynamic table
     @dynamic_start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
     @dynamic_end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.current.end_of_year
     @dynamic_employees_engineering_days = []
-
     @employees.map do |employee|
       employee_engineering_days = [employee.name]
       engineering_days = capacity_calculator.get_employee_engineering_days_between(employee, @dynamic_start_date, @dynamic_end_date)
       employee_engineering_days << engineering_days
-      
       @dynamic_employees_engineering_days << employee_engineering_days
     end
+    @dynamic_stats = capacity_calculator.get_stats(@dynamic_employees_engineering_days)
+    @dynamic_employees_engineering_days << ["Total", *@dynamic_stats[:column_totals]]
   end
 
   private
