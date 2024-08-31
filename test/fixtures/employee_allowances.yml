@@ -1,13 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+em_one_allow1:
   employee: one
-  year: 1
-  holiday_allowance: 1
-  sick_leave_allowance: 1
-
-two:
-  employee: two
-  year: 1
-  holiday_allowance: 1
-  sick_leave_allowance: 1
+  year: 2024
+  holiday_allowance: 30
+  sick_leave_allowance: 5

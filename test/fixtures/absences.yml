@@ -1,13 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+em_one_a1:
   employee: one
-  calendar_date: 2024-08-20
+  calendar_date: 2024-01-04
   half_day: false
-  absence_type: MyString
+  absence_type: <%= Absence.absence_types[:holiday] %>
 
-two:
-  employee: two
-  calendar_date: 2024-08-20
-  half_day: false
-  absence_type: MyString
+em_one_a2:
+  employee: one
+  calendar_date: 2024-01-05
+  half_day: true
+  absence_type: <%= Absence.absence_types[:holiday] %>
+
+em_one_a3:
+  employee: one
+  calendar_date: 2024-01-03
+  half_day: true
+  absence_type: <%= Absence.absence_types[:sick_leave] %>
