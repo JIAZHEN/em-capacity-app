@@ -3,11 +3,5 @@
 one:
   employee: one
   factor: 1.5
-  year: 1
-  month: 1
-
-two:
-  employee: two
-  factor: 1.5
-  year: 1
+  year: 2014
   month: 1
