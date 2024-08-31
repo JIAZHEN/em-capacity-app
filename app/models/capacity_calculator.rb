@@ -12,10 +12,8 @@ class CapacityCalculator
     absences = employee.absences_between(start_date, end_date)
     (start_date..end_date).reduce(0) do |result, d|
       if business_day?(d)
-        factor = employee_factors["#{d.year}-#{d.month}"]
-        unless factor
-          raise "No engineering factor found for #{employee.name} in #{d.year}-#{d.month}}"
-        end
+        # if not factor given it means 1
+        factor = employee_factors.fetch("#{d.year}-#{d.month}", 1)
         found_absence = absences.find { |absence| absence.calendar_date == d }
         day = found_absence ? (found_absence.half_day ? 0.5 : 0) : 1
         result += factor * day
