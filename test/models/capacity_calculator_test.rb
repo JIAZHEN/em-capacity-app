@@ -30,11 +30,11 @@ class CapacityCalculatorTest < ActiveSupport::TestCase
   end
 
   test "get_employee_engineering_days_between returns right value in 2024 with bank holiday and absence with factor 0.5" do
-    # in fixture this employee has 2 days absence in January 2024
+    # in fixture this employee has 1 day absence and two half-days in January 2024
     employee = employees(:one)
     EmployeeFactor.create!(employee: employee, factor: 0.5, month: 1, year: 2024)
     calculator = CapacityCalculator.new(@bank_holidays)
     engineering_days = calculator.get_employee_engineering_days_between(employee, @start_date, @end_date)
-    assert_equal 10.0, engineering_days
+    assert_equal 10.5, engineering_days
   end
 end

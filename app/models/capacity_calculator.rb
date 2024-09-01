@@ -16,7 +16,8 @@ class CapacityCalculator
         factor = employee_factors.fetch("#{d.year}-#{d.month}", 1)
         found_absence = absences.find { |absence| absence.calendar_date == d }
         day = found_absence ? (found_absence.half_day ? 0.5 : 0) : 1
-        result += factor * day
+        # if a day is a half day, do not apply the factor. In reality it doesn't make sense
+        result += (day < 1 ? day : factor * day)
       end
 
       result

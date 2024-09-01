@@ -27,8 +27,6 @@ class CapacitiesController < ApplicationController
       @employees_engineering_days << employee_engineering_days
     end
 
-    @monthly_stats = capacity_calculator.get_stats(@employees_engineering_days)
-
     # dynamic table
     @dynamic_start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
     @dynamic_end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.current.end_of_year
