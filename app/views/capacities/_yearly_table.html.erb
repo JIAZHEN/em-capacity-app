@@ -1,4 +1,5 @@
 <div class="overflow-x-auto shadow-md">
+  <%= area_chart get_employee_series(@month_names.map{|m| m.to_s.titleize}, @employees_engineering_days), stacked: true %>
   <table
     class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900"
   >
@@ -9,10 +10,8 @@
     <thead class="ltr:text-left rtl:text-right">
       <tr>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-blue-500">Name</th>
-        <% @current_month = Date.today.month - 1 %>
         <% @month_names.each_with_index do |month_name, index| %>
-          <% @column_colour = index == @current_month ? "dark:bg-gray-800" : "" %>
-          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 <%= @column_colour %>">
+          <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 <%= get_column_colour(@current_month, index) %>">
             <%= month_name.to_s.titleize %>
           </th>
         <%  end %>
@@ -24,9 +23,8 @@
           <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white text-center">
             <%= employee_engineering_days[0].to_s.titleize %>
           </td>
-          <% employee_engineering_days.slice(1, employee_engineering_days.length).each_with_index do |days, index| %>
-            <% @column_colour = index == @current_month ? "dark:bg-gray-800" : "" %>
-            <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center <%= @column_colour %>">
+          <% employee_engineering_days.drop(1).each_with_index do |days, index| %>
+            <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center <%= get_column_colour(@current_month, index) %>">
               <%= days %>
             </td>
           <% end %>

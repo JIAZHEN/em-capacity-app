@@ -28,8 +28,6 @@ class CapacitiesController < ApplicationController
     end
 
     @monthly_stats = capacity_calculator.get_stats(@employees_engineering_days)
-    @employees_engineering_days << ["Monthly Total", *@monthly_stats[:column_totals]]
-    @employees_engineering_days << ["Running Total", *@monthly_stats[:running_total]]
 
     # dynamic table
     @dynamic_start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
@@ -46,7 +44,6 @@ class CapacitiesController < ApplicationController
     end
     @dynamic_stats = capacity_calculator.get_stats(@dynamic_employees_engineering_days)
     @remaining_engineering_days = @dynamic_stats[:column_totals][0]
-    @dynamic_employees_engineering_days << ["Total", *@dynamic_stats[:column_totals]]
   end
 
   private

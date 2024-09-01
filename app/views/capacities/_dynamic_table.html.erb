@@ -12,6 +12,7 @@
       </div>
     <% end %>
   </div>
+  <%= bar_chart get_employee_series(["Engineering Days", "Remaining holidays", "Capacities"], @dynamic_employees_engineering_days), stacked: true %>
   <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900">
     <thead class="ltr:text-left rtl:text-right">
       <tr>
@@ -25,7 +26,7 @@
           Remaining holidays
         </th>
         <th scope="col" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white font-bold border-b-2 border-green-500 text-center">
-          Actual Capacities
+          Capacities
         </th>
       </tr>
     </thead>
@@ -35,7 +36,7 @@
           <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white text-center">
             <%= employee_engineering_days[0].to_s.titleize %>
           </td>
-          <% employee_engineering_days.slice(1, employee_engineering_days.length).each do |days| %>
+          <% employee_engineering_days.drop(1).each do |days| %>
             <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-center">
               <%= days %>
             </td>
