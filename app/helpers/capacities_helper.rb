@@ -1,6 +1,6 @@
 module CapacitiesHelper
   def get_column_colour(current_month, index)
-    index == current_month ? "dark:bg-gray-800" : ""
+    (index + 1) == current_month ? "dark:bg-gray-800" : ""
   end
 
   # ["John Doe", 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
