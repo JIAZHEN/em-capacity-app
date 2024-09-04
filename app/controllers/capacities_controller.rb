@@ -1,6 +1,18 @@
-require_relative '../../lib/constants'
-
 class CapacitiesController < ApplicationController
+  JAN = :jan
+  FEB = :feb
+  MAR = :mar
+  APR = :apr
+  MAY = :may
+  JUN = :jun
+  JUL = :jul
+  AUG = :aug
+  SEP = :sep
+  OCT = :oct
+  NOV = :nov
+  DEC = :dec
+  MONTH_NAMES = [JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC]
+
   def show
     the_year = Date.current.year
     @current_month = Date.current.month
