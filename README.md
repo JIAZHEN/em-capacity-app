@@ -9,7 +9,7 @@ Welcome to the **Engineering Capacity Planner**! This tool is designed to help e
 - **Admin Interface**: Manage data easily with a user-friendly administrative dashboard.
 - **Customizable Settings**: Adjust parameters to fit your organization's specific needs.
 
-![image](https://gist.github.com/user-attachments/assets/a64ec939-41d4-4fa6-9f6a-76d094bf3d0a)
+![image](./docs/Engineering_Manager_Capacity_Planning.png)
 
 ## Getting Started
 
