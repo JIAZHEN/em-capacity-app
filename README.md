@@ -52,7 +52,7 @@ Use the http://localhost:3000/admin interface to manage holidays, absences, and 
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](MIT-LICENSE) file for details.
 
 ## Support & Donations
 
