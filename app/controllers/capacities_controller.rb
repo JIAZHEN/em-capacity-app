@@ -53,7 +53,7 @@ class CapacitiesController < ApplicationController
       @dynamic_employees_engineering_days << employee_engineering_days
     end
     @dynamic_stats = capacity_calculator.get_stats(@dynamic_employees_engineering_days)
-    @remaining_engineering_days = @dynamic_stats[:column_totals][0]
+    @remaining_engineering_days = @dynamic_stats[:column_totals][0] || 0
   end
 
   private
