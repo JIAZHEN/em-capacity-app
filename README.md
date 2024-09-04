@@ -56,4 +56,4 @@ This project is licensed under the MIT License. See the [LICENSE](MIT-LICENSE) f
 
 ## Support & Donations
 
-If you find this tool helpful, consider buying me a coffee! A £1 donation is appreciated and will keep me fueled for future developments.
+If you find this tool helpful, consider [buying me a coffee](https://github.com/sponsors/JIAZHEN)! Any donation is appreciated and will keep me fueled for future developments.
