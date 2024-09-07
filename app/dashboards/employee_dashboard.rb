@@ -10,6 +10,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
+    team: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -22,6 +23,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     name
+    team
     created_at
   ].freeze
 
@@ -30,6 +32,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     name
+    team
     created_at
     updated_at
   ].freeze
@@ -39,6 +42,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     name
+    team
   ].freeze
 
   # COLLECTION_FILTERS
