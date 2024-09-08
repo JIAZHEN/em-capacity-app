@@ -1,5 +1,7 @@
 <div class="overflow-x-auto shadow-md">
-  <%= area_chart get_employee_series(@month_names.map{|m| m.to_s.titleize}, @employees_engineering_days), stacked: true %>
+  <div class="">
+    <%= area_chart get_employee_series(@month_names.map{|m| m.to_s.titleize}, @employees_engineering_days), stacked: true %>
+  </div>
   <table
     class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm dark:divide-gray-700 dark:bg-gray-900"
   >

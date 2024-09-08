@@ -25,6 +25,7 @@ class EmployeeAllowanceDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     employee
+    year
     holiday_allowance
     sick_leave_allowance
   ].freeze

@@ -11,6 +11,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     team: Field::String,
+    absences: Field::HasMany,
+    employee_allowances: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,6 +26,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     id
     name
     team
+    absences
+    employee_allowances
     created_at
   ].freeze
 
@@ -33,6 +37,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     id
     name
     team
+    absences
+    employee_allowances
     created_at
     updated_at
   ].freeze
