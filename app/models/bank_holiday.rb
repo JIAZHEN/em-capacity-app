@@ -1,8 +1,7 @@
 class BankHoliday < ApplicationRecord
-
   before_save :set_year
-  
-  private 
+
+  private
 
   def set_year
     self.year = calendar_date.year

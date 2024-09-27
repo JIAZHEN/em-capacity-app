@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class AbsenceDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -9,12 +9,12 @@ class AbsenceDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    absence_type: Field::Select.with_options(collection: ["holiday", "sick_leave"]),
+    absence_type: Field::Select.with_options(collection: %w[holiday sick_leave]),
     calendar_date: Field::Date,
     employee: Field::BelongsTo,
     half_day: Field::Boolean,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES

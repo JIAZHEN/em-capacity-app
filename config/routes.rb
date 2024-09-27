@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :employee_factors
     resources :employee_allowances
 
-    root to: "employees#index"
+    root to: 'employees#index'
   end
 
   get 'capacities/show'
-  root to: "capacities#show"
+  root to: 'capacities#show'
 end

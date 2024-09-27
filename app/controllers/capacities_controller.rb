@@ -23,7 +23,7 @@ class CapacitiesController < ApplicationController
 
     dates = (1..12).map do |month|
       start_date = Date.new(the_year, month, 1)
-      [start_date, start_date.end_of_month] 
+      [start_date, start_date.end_of_month]
     end
 
     @employees_engineering_days = []
@@ -34,7 +34,7 @@ class CapacitiesController < ApplicationController
         engineering_days = capacity_calculator.get_employee_engineering_days_between(employee, start_date, end_date)
         employee_engineering_days << engineering_days
       end
-      
+
       @holiday_remainings += employee.holiday_remaining_in_year(the_year)
       @employees_engineering_days << employee_engineering_days
     end
@@ -45,7 +45,8 @@ class CapacitiesController < ApplicationController
     @dynamic_employees_engineering_days = []
     @employees.map do |employee|
       employee_engineering_days = [employee.name]
-      engineering_days = capacity_calculator.get_employee_engineering_days_between(employee, @dynamic_start_date, @dynamic_end_date)
+      engineering_days = capacity_calculator.get_employee_engineering_days_between(employee, @dynamic_start_date,
+                                                                                   @dynamic_end_date)
       holiday_remaining = employee.holiday_remaining_in_year(the_year)
       employee_engineering_days << engineering_days
       employee_engineering_days << holiday_remaining

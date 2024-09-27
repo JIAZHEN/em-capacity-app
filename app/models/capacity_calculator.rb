@@ -13,7 +13,11 @@ class CapacityCalculator
         # if not factor given it means 1
         factor = employee_factors.fetch("#{d.year}-#{d.month}", 1)
         found_absence = absences.find { |absence| absence.calendar_date == d }
-        day = found_absence ? (found_absence.half_day ? 0.5 : 0) : 1
+        day = if found_absence
+                found_absence.half_day ? 0.5 : 0
+              else
+                1
+              end
         # if a day is a half day, do not apply the factor. In reality it doesn't make sense
         result += (day < 1 ? day : factor * day)
       end
@@ -28,17 +32,17 @@ class CapacityCalculator
   # the rest of the elements are the engineering days for each month
   # Like: ["John Doe", 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
   def get_stats(employees_engineering_days)
-    names, *columns = employees_engineering_days.transpose
+    _, *columns = employees_engineering_days.transpose
     column_totals = columns.map(&:sum)
     running_sum = 0
     running_total = column_totals.map { |column_total| running_sum += column_total }
-    { column_totals: column_totals,  running_total: running_total }
+    { column_totals:, running_total: }
   end
 
   private
 
   def business_day?(date)
-    working_day?(date) && !self.bank_holidays.include?(date)
+    working_day?(date) && !bank_holidays.include?(date)
   end
 
   def working_day?(date)
