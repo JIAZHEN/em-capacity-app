@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BankHoliday < ApplicationRecord
   before_save :set_year
 

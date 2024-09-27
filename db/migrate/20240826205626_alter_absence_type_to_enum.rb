@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AlterAbsenceTypeToEnum < ActiveRecord::Migration[7.1]
   def change
     remove_column :absences, :absence_type

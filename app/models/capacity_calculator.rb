@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CapacityCalculator
   attr_reader :months, :bank_holidays, :business_days
 

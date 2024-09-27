@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CapacitiesHelper
   def get_column_colour(current_month, index)
     (index + 1) == current_month ? 'dark:bg-gray-800' : ''

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CapacitiesController < ApplicationController
   JAN = :jan
   FEB = :feb
@@ -11,7 +13,7 @@ class CapacitiesController < ApplicationController
   OCT = :oct
   NOV = :nov
   DEC = :dec
-  MONTH_NAMES = [JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC]
+  MONTH_NAMES = [JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC].freeze
 
   def show
     the_year = Date.current.year
