@@ -160,6 +160,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
+    montecarlo-rb (0.0.3)
     msgpack (1.7.2)
     net-imap (0.4.16)
       date
@@ -351,6 +352,7 @@ DEPENDENCIES
   htmlbeautifier
   importmap-rails
   jbuilder
+  montecarlo-rb
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2)

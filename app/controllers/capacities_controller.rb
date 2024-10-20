@@ -44,8 +44,11 @@ class CapacitiesController < ApplicationController
     # dynamic table
     @dynamic_start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
     @dynamic_end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.current.end_of_year
+    @dynamic_team = params[:team]
     @dynamic_employees_engineering_days = []
-    @employees.map do |employee|
+    @employees.each do |employee|
+      next if @dynamic_team.present? && employee.team.downcase != @dynamic_team
+
       employee_engineering_days = [employee.name]
       engineering_days = capacity_calculator.get_employee_engineering_days_between(employee, @dynamic_start_date,
                                                                                    @dynamic_end_date)
@@ -57,11 +60,5 @@ class CapacitiesController < ApplicationController
     end
     @dynamic_stats = capacity_calculator.get_stats(@dynamic_employees_engineering_days)
     @remaining_engineering_days = @dynamic_stats[:column_totals][0] || 0
-  end
-
-  private
-
-  def search_params
-    params.permit(:start_date, :end_date)
   end
 end
