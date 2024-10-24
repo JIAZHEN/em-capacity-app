@@ -44,7 +44,7 @@ class CapacitiesController < ApplicationController
     # dynamic table
     @dynamic_start_date = params[:start_date].present? ? Date.parse(params[:start_date]) : Date.current
     @dynamic_end_date = params[:end_date].present? ? Date.parse(params[:end_date]) : Date.current.end_of_year
-    @dynamic_team = params[:team]
+    @dynamic_team = params[:team]&.downcase 
     @dynamic_employees_engineering_days = []
     @employees.each do |employee|
       next if @dynamic_team.present? && employee.team.downcase != @dynamic_team
